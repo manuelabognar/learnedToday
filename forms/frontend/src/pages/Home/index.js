@@ -11,6 +11,9 @@ export default function Home() {
       <div>
         <Link to="/register">Register</Link>
       </div>
+      <div>
+        <Link to="/userdata">User Data</Link>
+      </div>
     </div>
   );
 }
