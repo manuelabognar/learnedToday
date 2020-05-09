@@ -12,15 +12,28 @@ export default function SignIn() {
 
   return (
     <div>
-      <h1>Sign In</h1>
+      <section className="form-section">
+        <h1>Sign In</h1>
 
-      <Form onSubmit={handleSubmit}>
-        <Input name="email" type="email" />
-        <Input name="password" type="password" />
-        <button type="submit">Sign in</button>
-      </Form>
+        <div className="form-wrapper">
+          <Form onSubmit={handleSubmit}>
+            <div className="input-block">
+              <label>Email</label>
+              <Input name="email" type="email" id="login-email" />
+            </div>
+            <div className="input-block">
+              <label>Password</label>
+              <Input name="password" type="password" id="login-password" />
+            </div>
+            <button type="submit" className="btn-color">Entrar</button>
 
-      <Link to="/">Voltar</Link>
+            <Link type="submit" className="btn-clean" to="/register">Cadastrar</Link>
+
+          </Form>
+
+          <Link type="submit" to="/" >Home</Link>
+        </div>
+      </section>
     </div>
   );
 }
