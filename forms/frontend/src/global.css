@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100vh;
+}
+
+body {
+  background: #f0f0f5;
+  font-family: Roboto, Arial, sans-serif;
+}
+
+input, button, textarea, a {
+  font: 400 15px Roboto, Arial, sans-serif;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  font-size: 32px;
+  letter-spacing: 1px;
+  margin: 20px 0;
+  color: #063662;
+}
+
+form {
+  width: 350px;
+  margin: 20px 0;
+  background-color: white;
+  padding: 30px 25px;
+  border-radius: 5px;
+}
+
+form .input-block {
+  margin-bottom: 20px;
+}
+
+form .input-block label {
+  font-size: 14px;
+  color: #063662;
+}
+
+form .input-block input {
+  width: 100%;
+  display: block;
+  margin-top: 8px;
+  padding: 7px;
+  font-size: 16px;
+  color: #063662;
+  border-radius: 2px;
+  border: 1px solid #ccddef;
+  outline-color: #063662;
+}
+
+.btn-color {
+  display: block;
+  width: 100%;
+  border: none;
+  background-color: #063662;
+  color: white;
+  border-radius: 5px;
+  margin: auto;
+  padding: 15px;
+  margin-bottom: 15px;
+  transition: filter 0.2s;
+}
+
+.btn-color:hover {
+  filter: opacity(90%);
+}
+
+.btn-clean {
+  display: block;
+  width: 100%;
+  border: none;
+  background-color: transparent;
+  color: #063662;
+  border: 1px solid #063662;
+  border-radius: 5px;
+  margin: auto;
+  padding: 15px;
+  text-align: center;
+  text-decoration: none;
+  transition: filter 0.2s;
+}
+
+.btn-clean:hover {
+  background-color: #063662;
+  color: #fff;
+  filter: opacity(90%);
+}

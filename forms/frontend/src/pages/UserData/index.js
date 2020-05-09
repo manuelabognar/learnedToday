@@ -16,15 +16,18 @@ export default function UserData() {
       //validacao... (no backend!)
       if (data.name === "") {
         formRef.current.setFieldError('name', 'Nome obrigatório');
+        return;
       }
-      if (data.city === "") {
+      if (data.address.city === "") {
         formRef.current.setFieldError('address.city', 'Cidade obrigatória');
+        return;
       }
       
       //await API
 
       //formRef.current.setErrors({});
       console.log(data);
+      alert("Dados alterados com sucesso");
     } catch (err) {
       console.log(err);
       //formRef.current.setErrors(err);
@@ -50,37 +53,55 @@ export default function UserData() {
 
   return(
     <div>
-      <h1>Alterar dados</h1>
+      <section className="form-section">
+        <h1>Alterar Dados</h1>
 
-      <Form ref={formRef} onSubmit={handleSubmit}>
+        <div className="form-wrapper">
+          <Form ref={formRef} onSubmit={handleSubmit}>  
+            
+            <div className="input-block">
+              <label>Nome </label>
+              <Input name="name"/>
+            </div>
         
-        <label>Nome </label>
-        <Input name="name"/>
+            <Scope path="address">
+              <div className="input-block">
+                <label>CEP</label>
+                <Input name="cep" />
+              </div>
+
+              <div className="input-block">
+                <label>Cidade</label>
+                <Input name="city" />
+              </div>
+              
+              <div className="input-block">
+                <label>Estado</label>
+                <Input name="state" />
+              </div>
+
+              <div className="input-block">
+                <label>Bairro</label>
+                <Input name="neighborhood" />  
+              </div>
+          
+              <div className="input-block">
+                <label>Rua</label>
+                <Input name="street" />
+              </div>
+              
+              <div className="input-block">
+                <label>Número</label>
+                <Input name="number" />
+              </div>
+            </Scope>
         
-        <Scope path="address">
-          <label>CEP</label>
-          <Input name="cep" />
-
-          <label>Cidade</label>
-          <Input name="city" />
-
-          <label>Estado</label>
-          <Input name="state" />
-
-          <label>Bairro</label>
-          <Input name="neighborhood" />        
-
-          <label>Rua</label>
-          <Input name="street" />
-
-          <label>Número</label>
-          <Input name="number" />
-        </Scope>
-        
-        <button type="submit">Atualizar</button>
-      </Form>
+            <button type="submit" className="btn-color">Atualizar</button>
+          </Form>
       
-      <Link to="/">Voltar</Link>
+          <Link to="/">Home</Link>
+        </div>
+      </section>
     </div>
   );
 }
