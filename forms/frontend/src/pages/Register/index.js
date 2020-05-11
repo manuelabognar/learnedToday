@@ -1,15 +1,47 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import { Form } from '@unform/web';
 import { Scope } from '@unform/core';
 import Input from '../../components/Form/Input'
 
+import api from '../../services/api';
+
 export default function Register() {
 
-  function handleSubmit(data, { reset }) {
-    console.log(data);
-    reset();
+  const history = useHistory();
+
+  async function handleSubmit(data, { reset }) {
+
+    const dataTeste = {
+      name: data.name, 
+      email: data.email,
+      cpf: data.cpf,
+      cep: data.address.cep, 
+      city: data.address.city,
+      state: data.address.state,
+      neighborhood: data.address.neighborhood, 
+      street: data.address.street, 
+      number: data.address.number,
+      password: data.password,
+    };
+
+    console.log(dataTeste);
+
+    try {     
+      const response = await api.post('users', dataTeste);
+
+      console.log(response);
+
+      alert('Cadastro efetuado com sucesso');
+    
+      history.push('/signin');
+
+      //reset();
+
+    } catch (err) {
+      alert('Erro no cadastro, tente novamente.');
+    }
   }
 
   return(
@@ -22,20 +54,20 @@ export default function Register() {
       
           <div className="input-block">
             <label>Nome </label>
-            <Input name="register-name"/>
+            <Input name="name"/>
           </div>
 
           <div className="input-block">
             <label>E-mail</label>
-            <Input type="email" name="register-email"/>
+            <Input type="email" name="email"/>
           </div>
 
           <div className="input-block">
             <label>CPF</label>
-            <Input name="register-cpf" />
+            <Input name="cpf" />
           </div>
         
-          <Scope path="register-address">
+          <Scope path="address">
             <div className="input-block">
               <label>CEP</label>
               <Input name="cep" />
@@ -69,7 +101,7 @@ export default function Register() {
         
           <div className="input-block">
             <label>Senha </label>
-            <Input type="password" name="register-password"/>
+            <Input type="password" name="password"/>
           </div>
         
           <button type="submit" className="btn-color">Cadastrar</button>
