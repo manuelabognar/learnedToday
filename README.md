@@ -8,12 +8,12 @@ com projeto pequenos e pontuais. Mas estava ficando com muitos
 pequenos repositórios soltos, perdendo o foco dos que são maiores. 
 
 
-## Sobre cada um
+## Sobre
 
-### Animations
+* Animations: 
 Importa animações criadas externamente, trazendo para dentro do react de forma 
 perfomática porque utiliza as animações em formato JSON. Utilizando a biblioteca 
 [Lotties](https://github.com/airbnb/lottie).
 
-### Forms
+* Forms: 
 Alguns formulários básicos: login, cadastro e de alteração de dados. Com backend em Node e frontend em react, utilizando o [UNFORM](https://github.com/Rocketseat/unform).
