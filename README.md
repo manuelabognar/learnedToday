@@ -16,5 +16,4 @@ perfomática porque utiliza as animações em formato JSON. Utilizando a bibliot
 [Lotties](https://github.com/airbnb/lottie).
 
 ### Forms
-Alguns formulários básicos, de login, cadastro e de alteração de dados. Com frontend em react, utilizando o [UNFORM](https://github.com/Rocketseat/unform).
-
+Alguns formulários básicos: login, cadastro e de alteração de dados. Com backend em Node e frontend em react, utilizando o [UNFORM](https://github.com/Rocketseat/unform).
