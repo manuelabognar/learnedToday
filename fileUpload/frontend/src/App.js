@@ -1,10 +1,18 @@
 import React from 'react';
 
+import GlobalStyle from './styles/global';
+import { Container, Content } from './styles';
+
+import Upload from './components/Upload';
+
 function App() {
   return (
-    <div>
-      <h1>Start file upload</h1>
-    </div>
+    <Container>
+      <Content>
+        <Upload />
+      </Content>
+      <GlobalStyle />
+    </Container>
   );
 }
 
