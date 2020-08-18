@@ -20,3 +20,6 @@ Alguns formulários básicos: login, cadastro e de alteração de dados. Com bac
 
 * File Upload: 
 Upload de imagens com backend em NodeJS (Express) e frontend em ReactJS utilizando [styled components](https://github.com/styled-components/styled-components). (Rocketseat)
+
+* GoStack: 
+Aplicação realizada na primeira semana da GoStack da RocketSeat, afim de fortalecer os principais conceitos de Node, ReactJS, React Native e typescript.  
