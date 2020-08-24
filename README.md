@@ -23,3 +23,7 @@ Upload de imagens com backend em NodeJS (Express) e frontend em ReactJS utilizan
 
 * GoStack: 
 Aplicação realizada na primeira semana da GoStack da RocketSeat, afim de fortalecer os principais conceitos de Node, ReactJS, React Native e typescript.  
+
+* starter-project-nodejs
+Padrões de projeto com ESLint, Prettier e EditorConfig;
+Configurações debugger
