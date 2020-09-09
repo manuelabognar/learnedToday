@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 function addItemAction(title) {
@@ -29,7 +29,8 @@ export default function ItemsList() {
       },
     ],
   };
-  
+
+  const [total, setTotal] = useState(0);
 
   const items = useSelector(state => state.data, state => state.data);
   const dispatch = useDispatch();
@@ -49,6 +50,8 @@ export default function ItemsList() {
       items[index].qty++;
       dispatch(incrementQtyAction());
     }
+
+    setTotal(total+item.value);
   }
 
 
@@ -79,14 +82,17 @@ export default function ItemsList() {
             <li key={item.name}> 
               { item.name }
               <br />
-              Valor: { item.value }
+              Valor unitário: { item.value }
               <br />
               Qtd: { item.qty }
+              <br />
+              Valor total do produto: { item.value * item.qty }
               <br /> <br /> <br />
             </li>) 
           }
         </ul>
       </form>
+      Valor total: { total }
 
     </>
   )
