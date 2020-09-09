@@ -5,6 +5,10 @@ function addItemAction(title) {
   return { type: 'ADD_ITEM', title: title }
 }
 
+function incrementQtyAction(title) {
+  return { type: 'INCREMENT_QTY', title: title }
+}
+
 export default function ItemsList() {
   const allProducts = {
     data: [
@@ -27,25 +31,30 @@ export default function ItemsList() {
   };
   
 
-  const items = useSelector(state => state.data);
+  const items = useSelector(state => state.data, state => state.data);
   const dispatch = useDispatch();
 
   function handleAddItem(item) {  
-    console.log(item.id);
-    // procurar em items, se aquele id já foi adicionado ao carrinho
-    
-    // se nao, adiicono o item: 
-    item.qty = 1;
-    dispatch(addItemAction(item));
 
-    // se sim, somo 1 na quantidade do item
+    const index = items.findIndex(x => x.id === item.id);
     
+    if ( index === -1 ) {
+      dispatch(addItemAction({
+        id: item.id,
+        name: item.name,
+        value: item.value,
+        qty: 1
+      }));
+    } else {
+      items[index].qty++;
+      dispatch(incrementQtyAction());
+    }
   }
 
 
   return ( 
     <>
-      <h3>Todos os produtos</h3>
+      <h3>Produtos disponíveis para compra</h3>
       <form>
         <ul>
           { allProducts.data.map(item => 
@@ -63,7 +72,7 @@ export default function ItemsList() {
         </ul>
       </form>
 
-      <h3>Adicionados ao carrinho</h3>
+      <h3>Produtos adicionados ao carrinho</h3>
       <form>
         <ul>
           { items.map(item => 
