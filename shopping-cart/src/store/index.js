@@ -10,6 +10,10 @@ function items(state = INITIAL_STATE, action) {
       return { ...state, data: [...state.data, action.title] };
     case 'INCREMENT_QTY':
       return state;
+    case 'DELETE_ITEM':
+      const index = state.data.findIndex(x => x.id === action.title.id);
+      state.data.splice(index, 1);
+      return state;
     default:
       return state;
   }

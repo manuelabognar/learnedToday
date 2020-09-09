@@ -1,42 +1,56 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 function addItemAction(title) {
   return { type: 'ADD_ITEM', title: title }
 }
 
-function incrementQtyAction(title) {
-  return { type: 'INCREMENT_QTY', title: title }
+function incrementQtyAction() {
+  return { type: 'INCREMENT_QTY' }
+}
+
+function removeItemAction(title) {
+  return { type: 'DELETE_ITEM', title: title }
 }
 
 export default function ItemsList() {
+  const [total, setTotal] = useState(0);
+  const items = useSelector(state => state.data, state => state.data);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const reducer = (accumulator, currentValue) => accumulator + currentValue;
+    if (items.length > 0) {
+      const itemsArray = items.map(item => item.value * item.qty);
+      setTotal(itemsArray.reduce(reducer));
+    } else {
+      setTotal(0);
+    }
+  });
+
   const allProducts = {
     data: [
       {
-        id: '001',
+        id: 1,
         name: 'Produto Um',
         value: 10.5,
       },
       {
-        id: '002',
+        id: 2,
         name: 'Produto Dois',
         value: 20.00,
       },
       {
-        id: '003',
+        id: 3,
         name: 'Produto Três',
         value: 30,
       },
     ],
   };
 
-  const [total, setTotal] = useState(0);
 
-  const items = useSelector(state => state.data, state => state.data);
-  const dispatch = useDispatch();
 
   function handleAddItem(item) {  
-
     const index = items.findIndex(x => x.id === item.id);
     
     if ( index === -1 ) {
@@ -50,9 +64,12 @@ export default function ItemsList() {
       items[index].qty++;
       dispatch(incrementQtyAction());
     }
-
-    setTotal(total+item.value);
   }
+
+  function handleRemoveItem(item) {
+    dispatch(removeItemAction(item));
+  }
+
 
 
   return ( 
@@ -66,7 +83,7 @@ export default function ItemsList() {
               <br />
               Valor: { item.value }
               <br />
-                <button onClick={() => handleAddItem(item)} type="button">
+              <button onClick={() => handleAddItem(item)} type="button">
                 Adicionar
               </button>
               <br /> <br /> <br />
@@ -87,6 +104,10 @@ export default function ItemsList() {
               Qtd: { item.qty }
               <br />
               Valor total do produto: { item.value * item.qty }
+              <br />
+              <button onClick={() => handleRemoveItem(item)} type="button">
+                Remover
+              </button>
               <br /> <br /> <br />
             </li>) 
           }
