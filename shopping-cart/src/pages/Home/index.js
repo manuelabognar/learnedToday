@@ -1,14 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Provider } from 'react-redux';
+
+import store from '../../store';
+import ItemList from '../../components/ItemList';
 
 function Home() {
   return (
     <>
-      <h3>Home</h3>
-
-      <Link to='/cart'>
-        Cart
-      </Link>
+      <Provider store={store}>
+        <ItemList />
+      </Provider>
     </>
   );
 }
