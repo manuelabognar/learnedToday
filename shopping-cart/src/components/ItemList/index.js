@@ -1,37 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
+import PageHeader from '../PageHeader';
+import PageFooter from '../PageFooter';
+
 import product1 from '../../assets/products/produto01.jpg';
 import product2 from '../../assets/products/produto02.jpg';
 import product3 from '../../assets/products/produto03.jpg';
 
-import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
-import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Link from '@material-ui/core/Link';
 import CardMedia from '@material-ui/core/CardMedia';
 
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Manu :)
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -58,6 +46,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(6),
   },
+  margin: {
+    margin: theme.spacing(1),
+  },
 }));
 
 
@@ -74,6 +65,9 @@ function incrementQtyAction() {
 function removeItemAction(item) {
   return { type: 'DELETE_ITEM', item: item }
 }
+
+
+
 
 export default function ItemsList() {
   const classes = useStyles();
@@ -138,16 +132,26 @@ export default function ItemsList() {
   }
 
 
+  function handleRemoveQty(item) {
+    if (item.qty === 1) {
+      dispatch(removeItemAction(item));
+    } else {
+      const index = items.findIndex(x => x.id === item.id);
+      items[index].qty--;
+      dispatch(incrementQtyAction());
+    }
+  }
+
+  function handleAddQty(item) {
+    const index = items.findIndex(x => x.id === item.id);
+    items[index].qty++;
+    dispatch(incrementQtyAction());
+  }
+
   return (
       <React.Fragment>
         <CssBaseline />
-        <AppBar position="relative">
-          <Toolbar>
-            <Typography variant="h6" color="inherit" noWrap>
-              Shopping card
-            </Typography>
-          </Toolbar>
-        </AppBar>
+        <PageHeader />
 
         <main>
           <div className={classes.heroContent}>
@@ -206,7 +210,7 @@ export default function ItemsList() {
             <Grid container spacing={4}>
               { items.map(item => (
                 <Grid item key={item.id} xs={12} sm={6} md={4}>
-                  <Card className={classes.card}>
+                  <Card className={classes.card}> 
                     <CardMedia
                       className={classes.cardMedia}
                       image={item.image}
@@ -219,7 +223,13 @@ export default function ItemsList() {
                       <Typography>
                         Valor unitário: { item.value }
                         <br />
-                        Qtd: { item.qty }
+                        Qtd: { item.qty } 
+                        <Button onClick={() => handleRemoveQty(item)} variant="outlined" size="small" color="primary" className={classes.margin}>
+                          -
+                        </Button>
+                        <Button onClick={() => handleAddQty(item)} variant="outlined" size="small" color="primary" className={classes.margin}>
+                          +
+                        </Button>
                         <br />
                         Valor total do produto: R$ { item.value * item.qty }
                       </Typography>
@@ -240,15 +250,8 @@ export default function ItemsList() {
           </Container>
         </main>
 
-        <footer className={classes.footer}>
-          <Typography variant="h6" align="center" gutterBottom>
-            Listagem de produtos e carrinho de compras com suas lógicas básicas.
-          </Typography>
-          <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-            Utilizando Material UI, Redux e React Hooks.
-          </Typography>
-          <Copyright />
-        </footer>
+        <PageFooter />
+
       </React.Fragment>
   )
 }
