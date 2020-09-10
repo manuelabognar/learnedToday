@@ -7,11 +7,11 @@ const INITIAL_STATE = {
 function items(state = INITIAL_STATE, action) {
   switch (action.type) {
     case 'ADD_ITEM':
-      return { ...state, data: [...state.data, action.title] };
+      return { ...state, data: [...state.data, action.item] };
     case 'INCREMENT_QTY':
       return state;
     case 'DELETE_ITEM':
-      const index = state.data.findIndex(x => x.id === action.title.id);
+      const index = state.data.findIndex(x => x.id === action.item.id);
       state.data.splice(index, 1);
       return state;
     default:
