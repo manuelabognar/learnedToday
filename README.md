@@ -15,6 +15,10 @@ perfomática porque utiliza as animações em formato JSON. Utilizando a bibliot
 * [Forms](https://github.com/manuelabognar/learnedToday/tree/master/forms): 
 Alguns formulários básicos: login, cadastro e de alteração de dados. Com backend em NodeJS e frontend em react, utilizando o [unform](https://github.com/Rocketseat/unform). (Rocketseat)
 
+* [Hooks Redux](https://github.com/manuelabognar/learnedToday/tree/master/hooksRedux/frontend): 
+Aplicação simples de entrada de texto usando  useSelector e useDispatch 
+
+
 * [File Upload](https://github.com/manuelabognar/learnedToday/tree/master/fileUpload): 
 Upload de imagens com backend em NodeJS (Express) e frontend em ReactJS utilizando [styled components](https://github.com/styled-components/styled-components). (Rocketseat)
 
